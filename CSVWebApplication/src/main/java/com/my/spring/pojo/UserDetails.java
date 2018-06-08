@@ -86,6 +86,21 @@ public class UserDetails {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
+	@Override
+	public String toString(){
+		StringBuilder sb = new StringBuilder();
+		sb.append(this.id);
+		sb.append(this.firstName);
+		sb.append(this.lastName);
+		sb.append(this.company);
+		sb.append(this.address);
+		sb.append(this.secondaryAddress);
+		sb.append(this.email);
+		sb.append(this.zip);
+		sb.append(this.city);
+		sb.append(this.stateLong);
+		sb.append(this.state);
+		return sb.toString();
+	}
 
 }
