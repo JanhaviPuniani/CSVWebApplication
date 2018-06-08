@@ -1,6 +1,7 @@
 package com.my.spring;
 
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.my.spring.dao.CSVDao;
+import com.my.spring.pojo.UserDetails;
 
 /**
  * Handles requests for the application home page.
@@ -32,6 +36,8 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
+		CSVDao csvdao = new CSVDao();
+		ArrayList<UserDetails> list = csvdao.getContent("normal");
 		
 		return "home";
 	}
