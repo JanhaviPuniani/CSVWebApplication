@@ -14,17 +14,26 @@ public class CSVDao {
     
         Connection conn = null;
         Statement stmt = null;
-        try {
-            // Load the driver.
-            Class.forName("org.relique.jdbc.csv.CsvDriver");
-            // Create a connection. The first command line parameter is
-            // the directory containing the .csv files.
-       
-            conn = DriverManager.getConnection("jdbc:relique:csv:" + "C:\\Users\\AMY\\Documents\\workspace-sts-3.8.3.RELEASE\\CSVWebApplication");
-            // Create a Statement object to execute the query with.
-            
-            stmt = conn.createStatement();
-        } catch (ClassNotFoundException ex) {
+		try {
+			// Load the driver.
+			Class.forName("org.relique.jdbc.csv.CsvDriver");
+
+			// conn = DriverManager.getConnection("jdbc:relique:csv:" +
+			// "C:\\Users\\AMY\\Documents\\workspace-sts-3.8.3.RELEASE\\CSVWebApplication");
+
+			// relative path of csv
+			String path = this.getClass().getClassLoader().getResource("").getPath();
+			System.out.println("path is : " + path);
+			String strArray[] = path.split("spring-1.0.0-BUILD-SNAPSHOT");
+			System.out.println("first arg" + strArray[0]);
+			
+			// Create a connection. The first command line parameter is
+			// the directory containing the .csv files.
+			conn = DriverManager.getConnection("jdbc:relique:csv:" + strArray[0]);
+
+			// Create a Statement object to execute the query with.
+			stmt = conn.createStatement();
+		} catch (ClassNotFoundException ex) {
             System.out.println("ClassNotFoundException" + ex.getMessage());
         } catch (SQLException ex) {
             System.out.println("SQLException" + ex.getMessage());
